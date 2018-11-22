@@ -14,6 +14,7 @@ export class ModalComponent implements OnInit {
   private usrname;
   private pswd;
   private visible: string;
+  private mytoki;
 
   constructor(private loginservice: LoginService) { }
 
