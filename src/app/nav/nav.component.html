@@ -1,0 +1,20 @@
+<div class="d-flex flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <a class="navbar-brand" href="#">
+    <img src="{{logopath}}" width="30" height="30" alt="">
+  </a>
+  <h5 class="my-0 mr-5 font-weight-normal">Padel UPM</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a routerLink="index" id="link_home" class="p-2 text-primary" href="/index">Home</a>
+    <a routerLink="servicios" id="link_servicios" class="p-2 text-primary" href="/servicios">Servicios</a>
+    <a id="link_instalaciones" class="p-2 text-primary">Instalaciones</a>
+    <a id="link_reservar" class="p-2 text-primary">Reservar</a>
+  </nav>
+  <a class="btn btn-outline-primary ml-auto" id="btn-register">
+    <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>Register
+  </a>
+  <a class="btn btn-primary ml-4" id="btn-login" (click)="showmodal()">
+    <i class="fa fa-sign-in mr-2" aria-hidden="true"></i>Log in
+  </a>
+</div>
+
+<app-modal (toHide)="hidemodal($event)"></app-modal>
