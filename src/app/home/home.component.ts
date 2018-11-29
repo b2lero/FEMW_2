@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
     card2: './assets/img/img-card-3.jpg'
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

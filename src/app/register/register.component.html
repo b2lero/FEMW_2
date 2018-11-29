@@ -1,0 +1,104 @@
+<div id="register">
+    <div class="container p-0">
+        <form role="form" class="col-8 mx-auto shadow-sm mt-4 py-4 px-4 border rounded border-primary" id="arooly_cform"
+              [formGroup]="registerForm">
+            <h2 class="mb-4 text-primary text-center">Registro de usuario</h2>
+
+            <div class="form-group">
+                <label for="inputName" class="font-weight-bold">Usuario</label>
+                <div class="input-group Name">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control"  id="inputName" name="inputName" formControlName="username"
+                           placeholder="Identificador de usuario">
+                </div>
+                <div *ngIf="username.invalid && username.touched" class="col-4 p-0 ml-5 text-danger">
+                    <p *ngIf="username.errors?.required">
+                        Choose a username
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail" class="font-weight-bold">Correo</label>
+                <div class="input-group email">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" formControlName="email"
+                           placeholder="Email">
+                </div>
+                <div *ngIf="email.invalid && email.touched" class="col-4 p-0 ml-5 text-danger">
+                    <p *ngIf="email.errors?.required">
+                        Email field can't be blank
+                    </p>
+                    <p *ngIf="email.errors?.pattern">
+                        the e-mail adress doesn't seem right
+                    </p>
+                </div>
+            </div>
+
+            <div formGroupName="password">
+                <div class="form-group">
+                    <label for="inputKey" class="font-weight-bold">Clave</label>
+                    <div class="input-group password">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <input type="password" class="form-control" id="inputKey" name="inputKey" formControlName="pwd"
+                               placeholder="Clave">
+                    </div>
+                    <div *ngIf="pwd.invalid && pwd.touched" class="col-4 p-0 ml-5 text-danger">
+                        <p *ngIf="pwd.errors?.required">
+                            Choose a password
+                        </p>
+
+                        <p *ngIf="pwd.errors?.minlength">
+                            password is too short
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputKeybis" class="font-weight-bold">Repita Clave</label>
+                    <div class="input-group password">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <input type="password" class="form-control" id="inputKeybis" name="inputKeybis"
+                               formControlName="confirmpwd"
+                               placeholder="Repita clave">
+                    </div>
+                    <div *ngIf="pwd.value != confirmpwd.value">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputDate" class="font-weight-bold">Fecha de nacimiento</label>
+                <div class="input-group mydate">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <input type="date" class="form-control" id="inputDate" name="inputDate" formControlName="birthday">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" [disabled]="!registerForm.valid && registerForm.controls.email.touched"
+                        class="d-inline-block btn btn-lg btn-primary">Registrarse
+                </button>
+            </div>
+
+        </form>
+        <p>Form value: {{registerForm.value | json}}</p>
+        <p>Form status: {{registerForm.status | json}}</p>
+        <p>Form isValid: {{registerForm.valid | json}}</p>
+    </div>
+</div>

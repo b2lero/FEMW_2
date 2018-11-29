@@ -16,11 +16,7 @@
             <input type="text" class="form-control" id="login-username"
                    aria-describedby="emailHelp"
                    placeholder="Nombre usuario" name="username" [(ngModel)]="usrname">
-            <div class="invalid-feedback user">
-              <ul>
-                <li class="text-danger">usuario no existe</li>
-              </ul>
-            </div>
+
           </div>
           <div class="form-group mb-4">
             <label for="login-password"><i class="fa fa-key mr-2"
@@ -29,15 +25,13 @@
             <input type="password" class="form-control" id="login-password"
                    placeholder="Clave usuario"
                    name="password" [(ngModel)]="pswd">
-            <div class="invalid-feedback psw">
-              <ul>
-                <li class="text-danger">clave incorrecta</li>
-              </ul>
-            </div>
           </div>
+
           <button id="btn-login-submit" type="button" class="btn btn-dark btn-block py-2" (click)="connect();">
             Acceder
           </button>
+
+          <p *ngIf="error" class="text-danger m-0 mt-2 text-center">Datos incorrectos</p>
 
         </form>
       </div>

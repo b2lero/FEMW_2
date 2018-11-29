@@ -1,0 +1,7 @@
+.statuslogin{
+    display: none;
+}
+
+.logged{
+    border-top: 2px solid limegreen;
+}
