@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {ServiciosComponent} from './servicios/servicios.component';
 import {InstalacionesComponent} from './instalaciones/instalaciones.component';
 import {RegisterComponent} from './register/register.component';
+import {ReservationComponent} from './reservation/reservation.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     {path: 'servicios', component: ServiciosComponent},
     {path: 'instalaciones', component: InstalacionesComponent},
     {path: 'register', component: RegisterComponent},
+    {path: 'reservar', component: ReservationComponent},
     {path: '', redirectTo: 'index', pathMatch: 'full'}
 ];
 

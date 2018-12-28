@@ -1,4 +1,4 @@
-<div [class.logged]="isLogged" class="d-flex flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+<div class="d-flex flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <a class="navbar-brand" href="#">
         <img src="{{logopath}}" width="30" height="30" alt="logo upm">
     </a>
@@ -7,15 +7,17 @@
         <a routerLink="index" id="link_home" class="p-2 text-primary" href="/index">Home</a>
         <a routerLink="servicios" id="link_servicios" class="p-2 text-primary" href="/servicios">Servicios</a>
         <a routerLink="instalaciones" id="link_instalaciones" class="p-2 text-primary" href="/instalaciones">Instalaciones</a>
-        <a id="link_reservar" class="p-2 text-primary">Reservar</a>
+        <a [class.statuslogin]="!connected" routerLink="reservar"  id="link_reservar" class="p-2 text-primary" href="/reservation">Reservar</a>
     </nav>
-    <a routerLink="register" class="btn btn-outline-primary ml-auto" id="btn-register">
-        <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>Register
-    </a>
-    <a class="btn btn-primary ml-4" id="btn-login" (click)="showmodal()">
-        <span [class.statuslogin]="!connected" class="text-light"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Log out</span>
-        <span [class.statuslogin]="connected" class="text-light"><i class="fa fa-sign-in mr-2" aria-hidden="true"></i>Log in</span>
-    </a>
+    <div class="ml-auto">
+        <a [class.statuslogin]="connected"  routerLink="register" class="btn btn-outline-primary" id="btn-register">
+            <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>Register
+        </a>
+        <a class="btn btn-primary ml-4" id="btn-login" (click)="showmodal()">
+            <span [class.statuslogin]="!connected" class="text-light"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Log out</span>
+            <span [class.statuslogin]="connected" class="text-light"><i class="fa fa-sign-in mr-2" aria-hidden="true"></i>Log in</span>
+        </a>
+    </div>
 </div>
 
 <app-modal (toHide)="hidemodal($event)"></app-modal>

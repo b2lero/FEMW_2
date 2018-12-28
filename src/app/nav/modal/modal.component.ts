@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {LoginService} from '../../shared/services/login.service';
+import {UserService} from '../../shared/services/user.service';
 
 @Component({
     selector: 'app-modal',
@@ -13,11 +13,11 @@ export class ModalComponent implements OnInit {
 
     private usrname;
     private pswd;
-    private visible: string;
+    private visible = {};
     private token;
     private error: boolean;
 
-    constructor(private loginservice: LoginService) {
+    constructor(private loginservice: UserService) {
     }
 
     ngOnInit() {
@@ -28,15 +28,16 @@ export class ModalComponent implements OnInit {
             response => {
                 this.token = response.headers.get('Authorization');
                 sessionStorage.setItem('token', this.token);
-                sessionStorage.setItem('connected', 'true');
                 this.error = !this.error;
             }, err => {
                 this.error = true;
+                console.log('Wrong credentials');
             }, () => {
                 this.visible = 'hide';
-                this.toHide.emit(this.visible);
+                this.toHide.emit({hide: this.visible, token: this.token});
                 this.usrname = '';
                 this.pswd = '';
+                console.log('Connected');
             }
         );
     }

@@ -1,7 +1,11 @@
 <div id="register">
     <div class="container p-0">
+        <div *ngIf="isUserSaved" class="alert alert-success col-8 m-auto">
+            <span>Usuario Registrado</span>
+        </div>
+
         <form role="form" class="col-8 mx-auto shadow-sm mt-4 py-4 px-4 border rounded border-primary" id="arooly_cform"
-              [formGroup]="registerForm">
+              [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <h2 class="mb-4 text-primary text-center">Registro de usuario</h2>
 
             <div class="form-group">
@@ -16,7 +20,10 @@
                 </div>
                 <div *ngIf="username.invalid && username.touched" class="col-4 p-0 ml-5 text-danger">
                     <p *ngIf="username.errors?.required">
-                        Choose a username
+                        Escoger un nombre de usuario
+                    </p>
+                    <p *ngIf="username.errors?.usertaken">
+                        Escoger otro nombre
                     </p>
                 </div>
             </div>
@@ -33,10 +40,10 @@
                 </div>
                 <div *ngIf="email.invalid && email.touched" class="col-4 p-0 ml-5 text-danger">
                     <p *ngIf="email.errors?.required">
-                        Email field can't be blank
+                        Correo electronico obligatorio
                     </p>
                     <p *ngIf="email.errors?.pattern">
-                        the e-mail adress doesn't seem right
+                        Correo electronico invalido
                     </p>
                 </div>
             </div>
@@ -54,11 +61,11 @@
                     </div>
                     <div *ngIf="pwd.invalid && pwd.touched" class="col-4 p-0 ml-5 text-danger">
                         <p *ngIf="pwd.errors?.required">
-                            Choose a password
+                            Escoger ua contraseña
                         </p>
 
                         <p *ngIf="pwd.errors?.minlength">
-                            password is too short
+                            La contraseña es my corta
                         </p>
                     </div>
                 </div>
@@ -73,8 +80,14 @@
                                formControlName="confirmpwd"
                                placeholder="Repita clave">
                     </div>
-                    <div *ngIf="pwd.value != confirmpwd.value">
+                    <div *ngIf="confirmpwd.invalid && confirmpwd.touched" class="col-4 p-0 ml-5 text-danger">
+                        <p *ngIf="confirmpwd.errors?.required">
+                            Confirma la contraseña
+                        </p>
 
+                        <p *ngIf="confirmpwd.errors?.mustMatch">
+                            La contraseña no corresponde
+                        </p>
                     </div>
                 </div>
             </div>
@@ -86,19 +99,16 @@
                         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <input type="date" class="form-control" id="inputDate" name="inputDate" formControlName="birthday">
+                    <input type="date" class="form-control" id="inputDate" name="inputDate" formControlName="birthDate">
                 </div>
             </div>
 
             <div class="text-center">
-                <button type="button" [disabled]="!registerForm.valid && registerForm.controls.email.touched"
+                <button type="submit" [disabled]="!registerForm.valid"
                         class="d-inline-block btn btn-lg btn-primary">Registrarse
                 </button>
             </div>
 
         </form>
-        <p>Form value: {{registerForm.value | json}}</p>
-        <p>Form status: {{registerForm.status | json}}</p>
-        <p>Form isValid: {{registerForm.valid | json}}</p>
     </div>
 </div>
